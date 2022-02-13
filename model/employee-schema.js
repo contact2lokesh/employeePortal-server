@@ -15,10 +15,29 @@ const employeeSchema = Mongoose.Schema({
     location: String,
     state: String,
     country: String,
-    department: String
+    department: String,
+    DeletedAt: Date
 });
 
 autoInCrement.initialize(Mongoose.connection)
 employeeSchema.plugin(autoInCrement.plugin, 'employee');
 const Employee =Mongoose.model('employee', employeeSchema);
+let newEmp = new Employee();
+newEmp.save(function (err) {
+ 
+    // book._id === 100 -> true
+ 
+    newEmp.nextCount(function(err, count) {
+ 
+        // count === 101 -> true
+ 
+        newEmp.resetCount(function(err, nextCount) {
+ 
+            // nextCount === 100 -> true
+ 
+        });
+ 
+    });
+ 
+});
 export default Employee;

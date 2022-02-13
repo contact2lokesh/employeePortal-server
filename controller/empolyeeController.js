@@ -45,3 +45,21 @@ export const editEmployee = async (request, response) => {
         response.status(409).json({ message: error.message});     
     }
 }
+
+export const editStatusEmployee = async (request, response) => {
+    let user = await Employee.findById(request.params.id);
+    let action = request.params.action
+    console.log(user)
+    if(action === 'deactivate'){
+        Object.assign(user, {DeletedAt : Date.now()})   
+    }else{
+        Object.assign(user, {DeletedAt : null})  
+    }
+    const editUser = new Employee(user);
+    try{
+        await Employee.updateOne({_id: request.params.id}, editUser);
+        response.status(201).json(editUser);
+    } catch (error){
+        response.status(409).json({ message: error.message});     
+    }
+}
