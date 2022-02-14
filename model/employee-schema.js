@@ -25,15 +25,15 @@ const Employee =Mongoose.model('employee', employeeSchema);
 let newEmp = new Employee();
 newEmp.save(function (err) {
  
-    // book._id === 100 -> true
+  
  
     newEmp.nextCount(function(err, count) {
  
-        // count === 101 -> true
+    
  
         newEmp.resetCount(function(err, nextCount) {
  
-            // nextCount === 100 -> true
+         
  
         });
  

@@ -1,5 +1,6 @@
 import Employee from '../model/employee-schema.js';
 
+// get Employees List
 export const getEmployee = async(req, res) =>{
     try{
         const employees =  await Employee.find(); 
@@ -9,6 +10,7 @@ export const getEmployee = async(req, res) =>{
        }
 }
 
+// add Employees to the list 
 export const addEmployee = async(req, res)=>{
    const employee = req.body;
    const newEmployee = new Employee(employee); 
@@ -21,18 +23,8 @@ export const addEmployee = async(req, res)=>{
    }
 } 
  
-// export const updateEmployee = async(req, res)=>{
-//     const employee = req.params;;
-//     const updateEmployee = new Employee(employee); 
- 
-//     try{
-//      await newEmployee.save(); 
-//      res.json(newEmployee);
-//     }catch(error){
-//         res.json({message: error.message});
-//     }
-//  } 
 
+//update Employee
 export const editEmployee = async (request, response) => {
     let user = await Employee.findById(request.params.id);
     user = request.body;
@@ -46,10 +38,11 @@ export const editEmployee = async (request, response) => {
     }
 }
 
+// update active and deactive employee
 export const editStatusEmployee = async (request, response) => {
     let user = await Employee.findById(request.params.id);
     let action = request.params.action
-    console.log(user)
+    // console.log(user)
     if(action === 'deactivate'){
         Object.assign(user, {DeletedAt : Date.now()})   
     }else{
