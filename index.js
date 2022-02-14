@@ -10,7 +10,6 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(cors());
 app.use('/', route);
 
-// http://localhost:8000/api/employee
 const PORT = 8000;
 const URL = 'mongodb+srv://user:userName@employee-portal.21sbw.mongodb.net/PROJECT0?retryWrites=true&w=majority';
 
